@@ -69,7 +69,7 @@ class Television:
         if self.__status:
             if self.__muted:
                 self.__muted = False
-            if self.__volume < Television.MAX_VOLUME:
+            elif self.__volume < Television.MAX_VOLUME:
                 self.__volume = self.__volume + 1
 
     def volume_down(self) -> None:
@@ -81,7 +81,7 @@ class Television:
         if self.__status:
             if self.__muted:
                 self.__muted = False
-            if self.__volume > Television.MIN_VOLUME:
+            elif self.__volume > Television.MIN_VOLUME:
                 self.__volume = self.__volume - 1
 
     def __str__(self) -> str:
