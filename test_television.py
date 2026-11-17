@@ -33,6 +33,15 @@ def test_mute():
     assert str(tv1) == "Power = True, Channel = 0, Volume = 1"
     tv1.mute()
     assert str(tv1) == "Power = True, Channel = 0, Volume = 0"
+    tv1.mute()
+    assert str(tv1) == "Power = True, Channel = 0, Volume = 1"
+
+    tv2 = Television(False, False, 2, 0)
+    assert str(tv2) == "Power = False, Channel = 0, Volume = 2"
+    tv2.mute()
+    assert str(tv2) == "Power = False, Channel = 0, Volume = 2"
+    tv2.mute()
+    assert str(tv2) == "Power = False, Channel = 0, Volume = 2"
 
 
 def test_channel_up():
@@ -45,6 +54,9 @@ def test_channel_up():
         tv2.channel_up()
     assert str(tv2) == f"Power = True, Channel = {Television.MIN_CHANNEL}, Volume = 0"
 
+    tv3 = Television()
+    tv3.channel_up()
+    assert str(tv3) == "Power = False, Channel = 0, Volume = 0"
 
 def test_channel_down():
     tv1 = Television(True)
@@ -54,6 +66,10 @@ def test_channel_down():
     tv2 = Television(True, False, 0, 1)
     tv2.channel_down()
     assert str(tv2) == "Power = True, Channel = 0, Volume = 0"
+
+    tv3 = Television()
+    tv3.channel_down()
+    assert str(tv3) == "Power = False, Channel = 0, Volume = 0"
 
 def test_volume_up():
     tv1 = Television(True)
@@ -66,6 +82,14 @@ def test_volume_up():
         tv2.volume_up()
     assert str(tv2) == f"Power = True, Channel = 0, Volume = {Television.MAX_VOLUME}"
 
+    tv3 = Television()
+    tv3.volume_up()
+    assert str(tv3) == "Power = False, Channel = 0, Volume = 0"
+
+    tv4 = Television(True, True, 1, 0)
+    tv4.volume_up()
+    assert str(tv4) == "Power = True, Channel = 0, Volume = 2"
+
 def test_volume_down():
     tv1 = Television(True)
     #test that the volume will not go below the minimum (which is the default when initializing)
@@ -75,3 +99,11 @@ def test_volume_down():
     tv2 = Television(True, False, 1, 0)
     tv2.volume_down()
     assert str(tv2) == "Power = True, Channel = 0, Volume = 0"
+
+    tv3 = Television()
+    tv3.volume_down()
+    assert str(tv3) == "Power = False, Channel = 0, Volume = 0"
+
+    tv4 = Television(True, True, 2, 0)
+    tv4.volume_down()
+    assert str(tv4) == "Power = True, Channel = 0, Volume = 1"
