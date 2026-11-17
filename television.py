@@ -57,7 +57,7 @@ class Television:
         if self.__status:
             if self.__channel > Television.MIN_CHANNEL:
                 self.__channel = self.__channel - 1
-            if self.__channel == Television.MIN_CHANNEL:
+            elif self.__channel == Television.MIN_CHANNEL:
                 self.__channel = Television.MAX_CHANNEL
 
     def volume_up(self) -> None:
@@ -81,7 +81,7 @@ class Television:
         if self.__status:
             if self.__muted:
                 self.__muted = False
-            elif self.__volume > Television.MIN_VOLUME:
+            if self.__volume > Television.MIN_VOLUME:
                 self.__volume = self.__volume - 1
 
     def __str__(self) -> str:
